@@ -4,8 +4,9 @@ import (
 	"container/list"
 	"fmt"
 	"go/build"
-	"golang.org/x/tools/go/packages"
 	"strings"
+
+	"golang.org/x/tools/go/packages"
 )
 
 type PackageTest struct {
@@ -149,7 +150,7 @@ func (t *PackageTest) read(pChan chan *dep, d *dep, cache map[string]struct{}, f
 
 		pkg, err := context.Import(d.name, ".", importMode)
 		if err != nil {
-			e := fmt.Sprintf("Error reading: %s", d.name)
+			e := fmt.Sprintf("Error reading: %s because of %s", d.name, err)
 			t.t.Error(e)
 
 			continue
